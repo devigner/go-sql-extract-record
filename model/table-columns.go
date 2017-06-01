@@ -58,3 +58,18 @@ type ReferentialConstraints struct {
     TableName               string `db:"TABLE_NAME"`
     ReferencedTableName     string `db:"REFERENCED_TABLE_NAME"`
 }
+
+type KeyColumnUsage struct {
+    ConstraintCatalog          string `db:"CONSTRAINT_CATALOG"`
+    ConstraintSchema           string `db:"CONSTRAINT_SCHEMA"`
+    ConstraintName             string `db:"CONSTRAINT_NAME"`
+    TableCatalog               string `db:"TABLE_CATALOG"`
+    TableSchema                string `db:"TABLE_SCHEMA"`
+    TableName                  string `db:"TABLE_NAME"`
+    ColumnName                 string `db:"COLUMN_NAME"`
+    OrdinalPosition            string `db:"ORDINAL_POSITION"`
+    PositionInUniqueConstraint sql.NullString `db:"POSITION_IN_UNIQUE_CONSTRAINT"`
+    ReferencedTableSchema      sql.NullString `db:"REFERENCED_TABLE_SCHEMA"`
+    ReferencedTableName        sql.NullString `db:"REFERENCED_TABLE_NAME"`
+    ReferencedColumnName       sql.NullString `db:"REFERENCED_COLUMN_NAME"`
+}

@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Pro SQL dump
-# Version 5179
+# Version 5204
 #
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.14)
-# Database: test_db
-# Generation Time: 2017-05-10 19:18:56 +0000
+# Database: test-database
+# Generation Time: 2017-05-31 19:26:31 +0000
 # ************************************************************
 
 
@@ -24,12 +24,6 @@ SET NAMES utf8mb4;
 # Dump of table application
 # ------------------------------------------------------------
 
-CREATE TABLE `application` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 LOCK TABLES `application` WRITE;
 /*!40000 ALTER TABLE `application` DISABLE KEYS */;
 
@@ -44,15 +38,6 @@ UNLOCK TABLES;
 # Dump of table application_user
 # ------------------------------------------------------------
 
-CREATE TABLE `application_user` (
-  `application_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
-  KEY `application_id` (`application_id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `application_user_ibfk_1` FOREIGN KEY (`application_id`) REFERENCES `application` (`id`),
-  CONSTRAINT `application_user_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 LOCK TABLES `application_user` WRITE;
 /*!40000 ALTER TABLE `application_user` DISABLE KEYS */;
 
@@ -66,12 +51,6 @@ UNLOCK TABLES;
 
 # Dump of table user
 # ------------------------------------------------------------
-
-CREATE TABLE `user` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
