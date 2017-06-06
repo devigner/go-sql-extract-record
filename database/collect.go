@@ -2,6 +2,7 @@ package database
 
 import (
     "fmt"
+    "os"
 
     "github.com/devigner/mysql-extract-record/model"
 )
@@ -15,18 +16,27 @@ var keyColumnUsage = []*model.KeyColumnUsage{}
 
 func Init(host string, user string, pass string, port int64, database string) {
 
+
+
     SetupDatabase(host, user, pass, port, database)
 
     columns := []*model.TableColumns{}
 
-    err := DB.Select(&columns, fmt.Sprintf("SELECT * FROM `COLUMNS` where `TABLE_SCHEMA`='%v' order by `TABLE_NAME`", database))
+    query := fmt.Sprintf("SELECT * FROM `COLUMNS` where `TABLE_SCHEMA`='%v' order by `TABLE_NAME`", database)
+    //    fmt.Printf("/* COLUMNS: */ %v;\n", query)
+    err := DB.Select(&columns, query)
     if err != nil {
         fmt.Printf("Error: %v", err)
+        os.Exit(1)
     }
 
-    err = DB.Select(&keyColumnUsage, fmt.Sprintf("SELECT * FROM `KEY_COLUMN_USAGE` where `TABLE_SCHEMA`='%v' order by `TABLE_NAME`", database))
+    query = fmt.Sprintf("SELECT * FROM `KEY_COLUMN_USAGE` where `TABLE_SCHEMA`='%v' order by `TABLE_NAME`", database);
+    //    fmt.Printf("/* KEY_COLUMN_USAGE: */ %v;\n", query)
+    err = DB.Select(&keyColumnUsage, query)
+
     if err != nil {
         fmt.Printf("Error: %v", err)
+        os.Exit(1)
     }
 
     for _, v := range columns {
@@ -51,7 +61,7 @@ func getTable(table string) (*model.Table, error) {
 
 func hasColumn(table *model.Table, field string) bool {
     has := false
-    for _, column := range table.Columns{
+    for _, column := range table.Columns {
         if field == column.ColumnName {
             has = true
         }
