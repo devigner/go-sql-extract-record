@@ -13,18 +13,18 @@ func main() {
 
 	fmt.Printf(
 		"/*\nExtracting:\n  Database: `%v`\n  Table: `%v`\n  Field: `%v`\n  Value: `%v`\n*/ \n\n",
-		config.DbDatabase,
+		config.Database,
 		config.Table,
 		config.Field,
 		config.Value,
 	)
 
 	database.Init(
-		config.DbHost,
-		config.DbUser,
-		config.DbPass,
-		config.DbPort,
-		config.DbDatabase,
+		config.Host,
+		config.User,
+		config.Pass,
+		config.Port,
+		config.Database,
 	)
 
 	path := []string{}
@@ -38,7 +38,7 @@ func main() {
 	)
 
 	database.PrintResult(
-		config.DbDatabase,
+		config.Database,
 		config.Output,
 	)
 }

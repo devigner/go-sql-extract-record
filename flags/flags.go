@@ -4,16 +4,17 @@ import (
 	"flag"
 )
 
+// Config Store the data
 type Config struct {
-	DbHost     string
-	DbUser     string
-	DbPass     string
-	DbDatabase string
-	Table      string
-	Field      string
-	Value      string
-	DbPort     int64
-	Output     bool
+	Host     string
+	User     string
+	Pass     string
+	Database string
+	Table    string
+	Field    string
+	Value    string
+	Port     int64
+	Output   bool
 }
 
 // Init gather input
@@ -42,17 +43,17 @@ func Init() *Config {
 
 	config := &Config{}
 
-	flag.StringVar(&config.DbHost, "host", defaultHost, usageHost)
-	flag.StringVar(&config.DbHost, "h", defaultHost, usageHost+" (shorthand)")
+	flag.StringVar(&config.Host, "host", defaultHost, usageHost)
+	flag.StringVar(&config.Host, "h", defaultHost, usageHost+" (shorthand)")
 
-	flag.StringVar(&config.DbUser, "user", defaultUser, usageUser)
-	flag.StringVar(&config.DbUser, "u", defaultUser, usageUser+" (shorthand)")
+	flag.StringVar(&config.User, "user", defaultUser, usageUser)
+	flag.StringVar(&config.User, "u", defaultUser, usageUser+" (shorthand)")
 
-	flag.StringVar(&config.DbPass, "passwd", defaultPass, usagePass)
-	flag.StringVar(&config.DbPass, "p", defaultPass, usagePass+" (shorthand)")
+	flag.StringVar(&config.Pass, "passwd", defaultPass, usagePass)
+	flag.StringVar(&config.Pass, "p", defaultPass, usagePass+" (shorthand)")
 
-	flag.StringVar(&config.DbDatabase, "database", defaultDatabase, usageDatabase)
-	flag.StringVar(&config.DbDatabase, "d", defaultDatabase, usageDatabase+" (shorthand)")
+	flag.StringVar(&config.Database, "database", defaultDatabase, usageDatabase)
+	flag.StringVar(&config.Database, "d", defaultDatabase, usageDatabase+" (shorthand)")
 
 	flag.StringVar(&config.Table, "table", defaultTable, usageDatabase)
 	flag.StringVar(&config.Table, "t", defaultTable, usageDatabase+" (shorthand)")
@@ -66,7 +67,7 @@ func Init() *Config {
 	flag.BoolVar(&config.Output, "output", true, usageDatabase)
 	flag.BoolVar(&config.Output, "o", true, usageDatabase+" (shorthand)")
 
-	flag.Int64Var(&config.DbPort, "port", defaultPort, usageUser)
+	flag.Int64Var(&config.Port, "port", defaultPort, usageUser)
 	//flag.Int64Var(&config.dbPort, "p", defaultPort, usageUser+" (shorthand)")
 
 	flag.Parse()

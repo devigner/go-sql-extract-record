@@ -20,17 +20,13 @@ func SetupDatabase(host string, user string, pass string, port int64, database s
 
 	var err error
 
-	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", user, pass, host, port, "information_schema")
-
-	ConnectionInformationSchema, err = sqlx.Connect("mysql", dataSourceName)
+	ConnectionInformationSchema, err = sqlx.Connect("mysql", fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", user, pass, host, port, "information_schema"))
 	if err != nil {
 		fmt.Printf("Error :%v", err)
 		os.Exit(1)
 	}
 
-	dataSourceName = fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", user, pass, host, port, database)
-
-	ConnectionTargetSchema, err = sqlx.Connect("mysql", dataSourceName)
+	ConnectionTargetSchema, err = sqlx.Connect("mysql", fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", user, pass, host, port, database))
 	if err != nil {
 		fmt.Printf("Error :%v", err)
 		os.Exit(1)

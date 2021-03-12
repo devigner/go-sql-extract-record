@@ -32,7 +32,6 @@ func Init(host string, user string, pass string, port int64, database string) {
 	query = fmt.Sprintf("SELECT * FROM `KEY_COLUMN_USAGE` where `TABLE_SCHEMA`='%v' order by `TABLE_NAME`", database)
 	fmt.Printf("/* KEY_COLUMN_USAGE: */ %v;\n", query)
 	err = ConnectionInformationSchema.Select(&keyColumnUsage, query)
-
 	if err != nil {
 		fmt.Printf("Error: %v", err)
 		os.Exit(1)
